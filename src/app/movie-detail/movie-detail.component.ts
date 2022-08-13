@@ -16,7 +16,8 @@ export class MovieDetailComponent implements OnInit {
 
   movieId = ''
   load = false
-  movieData = {}
+  movieData: any
+
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       this.movieId = params['id'];

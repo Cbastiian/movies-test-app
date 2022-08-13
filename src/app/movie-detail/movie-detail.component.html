@@ -1,1 +1,66 @@
-<p>movie-detail works!</p>
+<div class="container pt-5">
+  <div class="load-container" *ngIf="load">
+    <div class="d-flex align-items-center">
+      <strong>Loading...</strong>
+      <div
+        class="spinner-border ms-auto"
+        role="status"
+        aria-hidden="true"
+      ></div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!load">
+    <div class="col-md-12">
+      <h2>{{ movieData.Title }}</h2>
+    </div>
+    <div class="col-md-4 pt-4">
+      <img [src]="movieData.Poster" alt="" srcset="" />
+    </div>
+    <div class="col-md-5 pt-3">
+      <div><strong>Genero</strong>: {{ movieData.Genre }}</div>
+      <div>
+        <strong>Director</strong>:
+        {{ movieData.Director }}
+      </div>
+      <div><strong>Escritor</strong>: {{ movieData.Writer }}</div>
+      <div><strong>Año</strong>: {{ movieData.Year }}</div>
+      <div><strong>Fecha de estreno</strong>: {{ movieData.Released }}</div>
+      <div><strong>Clasificación</strong>: {{ movieData.Rated }}</div>
+      <div><strong>Duracion</strong>{{ movieData.Runtime }}</div>
+      <div><strong>Actores</strong>: {{ movieData.Actors }}</div>
+      <div>
+        <strong>Lenguages disponibles</strong>: {{ movieData.Language }}
+      </div>
+      <div><strong>Country</strong>: {{ movieData.Country }}</div>
+      <div><strong>Premios</strong>: {{ movieData.Awards }}</div>
+      <div><strong>Puntaje</strong>: {{ movieData.Metascore }}</div>
+      <div><strong>Rating imdb</strong>: {{ movieData.imdbRating }}</div>
+      <div><strong>Votos imdb</strong>: {{ movieData.imdbVotes }}</div>
+      <div><strong>Id imdb</strong>: {{ movieData.imdbID }}</div>
+      <div><strong>Tipo de contenido</strong>: {{ movieData.Type }}</div>
+      <div><strong>Salida en DVD</strong>: {{ movieData.DVD }}</div>
+      <div><strong>Dinero recaudado</strong>: {{ movieData.BoxOffice }}</div>
+      <div><strong>Producción</strong>: {{ movieData.Production }}</div>
+      <div><strong>Sitio web</strong>: {{ movieData.Website }}</div>
+    </div>
+    <div class="col">
+      <h2>Sinopsis</h2>
+      {{ movieData.Plot }}
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="!load">
+    <h3>Opiniones de la critica</h3>
+
+    <div
+      class="card mx-2"
+      style="width: 18rem"
+      *ngFor="let item of movieData.Ratings"
+    >
+      <div class="card-body">
+        <h5 class="card-title">{{ item.Source }}</h5>
+
+        <div><strong>Clasificación</strong>: {{ item.Value }}</div>
+      </div>
+    </div>
+  </div>
+</div>
