@@ -9,12 +9,14 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LoaderComponent } from './loader/loader.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
     SearchBodyComponent,
     MovieDetailComponent,
-    LoaderComponent
+    LoaderComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
