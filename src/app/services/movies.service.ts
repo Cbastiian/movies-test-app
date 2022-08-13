@@ -12,6 +12,14 @@ export class MoviesService {
   constructor(private http: HttpClient) { }
 
   public getMovies(title: string): Observable<any> {
-    return this.http.get(this.endpoint + '&&s=' + title)
+    return this.http.get(this.endpoint + '&s=' + title)
+  }
+
+  public getMovieByYear(year: string): Observable<any> {
+    return this.http.get(this.endpoint + '&y=' + year)
+  }
+
+  public getMovieById(id: string): Observable<any> {
+    return this.http.get(this.endpoint + '&i=' + id)
   }
 }
