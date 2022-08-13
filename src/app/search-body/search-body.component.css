@@ -52,12 +52,15 @@
     -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
 }
 
-.title-white {
-  color: white;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-.title-black {
-  color: black;
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
 
 @media all and (max-width: 500px) {

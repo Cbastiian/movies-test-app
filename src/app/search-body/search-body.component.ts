@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-search-body',
   templateUrl: './search-body.component.html',
@@ -10,44 +11,63 @@ export class SearchBodyComponent implements OnInit {
 
   movies: any = [];
   load: boolean = false;
+  error: boolean = false;
   movieSearch: string = ''
   yearSearch: string = ''
 
   constructor(private serviceMovies: MoviesService,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
-    this.searchMovie('room')
-
+    this.searchMovie('room', true)
   }
 
-  searchMovie(search: any) {
+  searchMovie(search: any, load: boolean) {
     try {
-      this.load = true
+      if (this.movieSearch.length <= 2 && !load) {
+        this.toastr.warning('Advertencia', 'Debes ingresar minimo 3 caracteres');
+      } else {
+        this.load = true
 
-      this.serviceMovies.getMovies(search).subscribe(movies => {
-        this.movies = movies.Search
-      })
+        this.serviceMovies.getMovies(search).subscribe(response => {
+
+          if (response.Response == 'False') {
+            this.toastr.error('Error', response.Error);
+          } else {
+            this.movies = response.Search
+          }
+        })
+      }
     } catch (error) {
-      console.log('ha ocurrido un error inesperado');
+      this.toastr.error('Error', 'Algo ha fallado durante la ejecución');
     } finally {
       this.load = false
     }
   }
 
   searchByTitle() {
-    this.searchMovie(this.movieSearch)
+    this.searchMovie(this.movieSearch, false)
   }
 
   movieSearchYear() {
     try {
       this.load = true
 
-      this.serviceMovies.getMovieByYear(this.yearSearch).subscribe(movies => {
-        this.movies = movies.Search
+      this.serviceMovies.getMovieByYear(this.yearSearch).subscribe(response => {
+
+
+        if (response.Response == 'False') {
+          this.toastr.error('Error', 'Algo ha fallado durante la ejecución');
+        } else {
+          this.movies = response.Search
+
+        }
       })
+
     } catch (error) {
-      console.log('ha ocurrido un error inesperado');
+      this.toastr.error('Error', 'Algo ha fallado durante la ejecución');
     } finally {
       this.load = false
     }

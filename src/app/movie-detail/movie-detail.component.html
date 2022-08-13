@@ -9,7 +9,7 @@
       ></div>
     </div>
   </div>
-  <div class="row" *ngIf="!load">
+  <div class="row" *ngIf="!load && !error">
     <div class="col-md-12">
       <h2>{{ movieData.Title }}</h2>
     </div>
@@ -48,7 +48,7 @@
       {{ movieData.Plot }}
     </div>
   </div>
-  <div class="row mt-2" *ngIf="!load">
+  <div class="row mt-2" *ngIf="!load && !error">
     <h3>Opiniones de la critica</h3>
 
     <div
@@ -62,5 +62,8 @@
         <div><strong>Clasificación</strong>: {{ item.Value }}</div>
       </div>
     </div>
+  </div>
+  <div *ngIf="error">
+    <h1>Sin Resultados</h1>
   </div>
 </div>
