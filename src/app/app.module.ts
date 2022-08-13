@@ -8,11 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { MovieDetailComponent } from './movie-detail/movie-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { LoaderComponent } from './loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
     SearchBodyComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

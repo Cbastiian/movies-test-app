@@ -1,14 +1,5 @@
 <div class="container pt-5">
-  <div class="load-container" *ngIf="load">
-    <div class="d-flex align-items-center">
-      <strong>Loading...</strong>
-      <div
-        class="spinner-border ms-auto"
-        role="status"
-        aria-hidden="true"
-      ></div>
-    </div>
-  </div>
+  <app-loader *ngIf="load"></app-loader>
   <div class="row" *ngIf="!load && !error">
     <div class="col-md-12">
       <h2>{{ movieData.Title }}</h2>
